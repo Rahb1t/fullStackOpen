@@ -9,9 +9,9 @@ const Part = (props) => {
 export function Content({ parts }) {
   return (
     <div>
-      <Part part={parts.part1.name} exercises={parts.part1.exercises} />
-      <Part part={parts.part2.name} exercises={parts.part2.exercises} />
-      <Part part={parts.part3.name} exercises={parts.part3.exercises} />
+      <Part part={parts[0].name} exercises={parts[0].exercises} />
+      <Part part={parts[1].name} exercises={parts[1].exercises} />
+      <Part part={parts[2].name} exercises={parts[2].exercises} />
     </div>
   )
 }
