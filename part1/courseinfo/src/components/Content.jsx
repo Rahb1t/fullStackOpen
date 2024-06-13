@@ -1,15 +1,17 @@
+const Part = (props) => {
+  return (
+    <p>
+      {props.part} {props.exercises}
+    </p>
+  )
+}
+
 export function Content({ parts, exercises }) {
   return (
-    <>
-      <p>
-        {parts.part1} {exercises.exercises1}
-      </p>
-      <p>
-        {parts.part2} {exercises.exercises2}
-      </p>
-      <p>
-        {parts.part3} {exercises.exercises3}
-      </p>
-    </>
+    <div>
+      <Part part={parts.part1} exercises={exercises.exercises1} />
+      <Part part={parts.part2} exercises={exercises.exercises2} />
+      <Part part={parts.part3} exercises={exercises.exercises3} />
+    </div>
   )
 }
