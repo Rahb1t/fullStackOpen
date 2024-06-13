@@ -6,12 +6,12 @@ const Part = (props) => {
   )
 }
 
-export function Content({ parts, exercises }) {
+export function Content({ parts }) {
   return (
     <div>
-      <Part part={parts.part1} exercises={exercises.exercises1} />
-      <Part part={parts.part2} exercises={exercises.exercises2} />
-      <Part part={parts.part3} exercises={exercises.exercises3} />
+      <Part part={parts.part1.name} exercises={parts.part1.exercises} />
+      <Part part={parts.part2.name} exercises={parts.part2.exercises} />
+      <Part part={parts.part3.name} exercises={parts.part3.exercises} />
     </div>
   )
 }

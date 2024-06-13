@@ -1,8 +1,8 @@
-export function Total({ exercises }) {
+export function Total({ parts }) {
   return (
     <p>
       Number of exercises{' '}
-      {exercises.exercises1 + exercises.exercises2 + exercises.exercises3}
+      {parts.part1.exercises + parts.part2.exercises + parts.part3.exercises}
     </p>
   )
 }
