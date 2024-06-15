@@ -14,9 +14,19 @@ const App = () => {
   const [persons, setPersons] = useState([{ name: 'Arto Hellas' }])
   const [newName, setNewName] = useState('')
 
+  const validatePerson = (name) => {
+    const existingPerson = persons.find((person) => person.name === name)
+    if (existingPerson) {
+      alert(`${name} is already added to phonebook`)
+      return false
+    }
+    return true
+  }
+
   const handleSubmit = (event) => {
     event.preventDefault()
     const newPerson = { name: newName }
+    if (!validatePerson(newPerson.name)) return
     setPersons(persons.concat(newPerson))
   }
 
