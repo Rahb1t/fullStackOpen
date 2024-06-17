@@ -16,13 +16,6 @@ const App = () => {
     })
   }, [])
 
-  // const [showAll, setShowAll] = useState(true)
-
-  // const personsToShow = showAll
-  //   ? persons
-  //   : persons.filter((person) =>
-  //       person.name.toLowerCase().includes(filter.toLowerCase())
-  //     )
   const personsToShow = persons.filter((person) =>
     person.name.toLowerCase().includes(filter.toLowerCase())
   )
@@ -34,6 +27,14 @@ const App = () => {
       return false
     }
     return true
+  }
+
+  const deletePerson = (id, name) => {
+    window.confirm(`Delete ${name}?`)
+    personService.deletePerson(id).then((res) => {
+      setPersons(persons.filter((person) => person.id !== id))
+      console.log(res)
+    })
   }
 
   const handleSubmit = (event) => {
@@ -77,7 +78,7 @@ const App = () => {
       />
       <h2>Numbers</h2>
       {}
-      <Numbers persons={personsToShow} />
+      <Numbers persons={personsToShow} deletePerson={deletePerson} />
     </div>
   )
 }
