@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react'
 import Numbers from './components/Numbers'
 import Filters from './components/Filters'
 import PersonForm from './components/PersonForm'
+//import personService from './services/persons'
 import axios from 'axios'
 
 const App = () => {
@@ -41,10 +42,11 @@ const App = () => {
     const newPerson = {
       name: newName,
       number: newNumber,
-      id: persons.length + 1,
     }
     if (!validatePerson(newPerson.name)) return
-    setPersons(persons.concat(newPerson))
+    axios.post('http://localhost:3001/persons', newPerson).then((response) => {
+      setPersons(persons.concat(response.data))
+    })
     setNewName('')
     setNewNumber('')
   }
