@@ -3,12 +3,14 @@ import Numbers from './components/Numbers'
 import Filters from './components/Filters'
 import PersonForm from './components/PersonForm'
 import personService from './services/persons'
+import Message from './components/Message'
 
 const App = () => {
   const [persons, setPersons] = useState([])
   const [newName, setNewName] = useState('')
   const [newNumber, setNewNumber] = useState('')
   const [filter, setFilter] = useState('')
+  const [message, setMessage] = useState({ text: null, messageType: null })
 
   useEffect(() => {
     personService.getAll().then((initialPersons) => {
@@ -65,6 +67,10 @@ const App = () => {
     personService.create(newPerson).then((newPerson) => {
       setPersons(persons.concat(newPerson))
     })
+    setMessage({
+      text: `Added ${newPerson.name}`,
+      messageType: 'success',
+    })
     setNewName('')
     setNewNumber('')
   }
@@ -85,6 +91,7 @@ const App = () => {
   return (
     <div>
       <h2>Phonebook</h2>
+      <Message text={message.text} messageType={message.messageType} />
       <Filters filter={filter} handleFilter={handleFilter} />
       <h2>add a new</h2>
       <PersonForm
