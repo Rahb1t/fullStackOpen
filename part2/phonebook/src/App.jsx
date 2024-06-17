@@ -55,6 +55,14 @@ const App = () => {
         const person = persons.find((person) => person.name === newPerson.name)
         console.log(person)
         personService.update(person.id, newPerson).then((updatedPerson) => {
+          if (updatedPerson === 'error') {
+            setMessage({
+              text: `Information of ${newPerson.name} has already been removed from server`,
+              messageType: 'error',
+            })
+            setPersons(persons.filter((person) => person.id !== person.id))
+            return
+          }
           setPersons(
             persons.map((person) =>
               person.id !== updatedPerson.id ? person : updatedPerson
