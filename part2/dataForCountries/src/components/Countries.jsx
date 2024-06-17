@@ -1,7 +1,8 @@
 import { useState } from 'react'
+import Weather from './Weather'
 
 const showFullCountry = (country) => {
-  console.log(`button pressed for ${country.name.common}`)
+  //  console.log(country)
   return (
     <div>
       <h1>{country.name.common}</h1>
@@ -18,6 +19,7 @@ const showFullCountry = (country) => {
         alt={`flag of ${country.name.common}`}
         width='100'
       />
+      <Weather country={country} />
     </div>
   )
 }
