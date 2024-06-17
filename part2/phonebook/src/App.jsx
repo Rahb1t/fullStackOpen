@@ -23,7 +23,6 @@ const App = () => {
   const validatePerson = (name) => {
     const existingPerson = persons.find((person) => person.name === name)
     if (existingPerson) {
-      alert(`${name} is already added to phonebook`)
       return false
     }
     return true
@@ -43,7 +42,26 @@ const App = () => {
       name: newName,
       number: newNumber,
     }
-    if (!validatePerson(newPerson.name)) return
+    // we validate if the person already exist, if so, we ask the user if they want to update the number
+    // if the user confirms, we update the number
+    if (!validatePerson(newPerson.name)) {
+      if (
+        window.confirm(
+          `${newPerson.name} is already added to phonebook, replace the old number with a new one?`
+        )
+      ) {
+        const person = persons.find((person) => person.name === newPerson.name)
+        console.log(person)
+        personService.update(person.id, newPerson).then((updatedPerson) => {
+          setPersons(
+            persons.map((person) =>
+              person.id !== updatedPerson.id ? person : updatedPerson
+            )
+          )
+        })
+      }
+      return
+    }
     personService.create(newPerson).then((newPerson) => {
       setPersons(persons.concat(newPerson))
     })
